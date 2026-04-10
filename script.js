@@ -1,57 +1,57 @@
 const games = [
   {
-    title: "Subway Surfers",
-    category: "Runner",
-    status: "Ready idea",
-    description: "A fast-paced endless runner slot for one of the most recognizable unblocked game picks.",
-    primaryLabel: "Add launcher",
+    title: "Placeholder Item One",
+    category: "Group A",
+    status: "Sample status",
+    description: "Example card copy used to preview the component without showing final content details.",
+    primaryLabel: "Primary link",
     primaryHref: "#",
-    secondaryLabel: "Category: Runner"
+    secondaryLabel: "Tag: Group A"
   },
   {
-    title: "2048",
-    category: "Puzzle",
-    status: "Ready idea",
-    description: "A clean puzzle card that fits perfectly into a simple grid-based game hub.",
-    primaryLabel: "Add launcher",
+    title: "Placeholder Item Two",
+    category: "Group B",
+    status: "Sample status",
+    description: "Neutral supporting text fills out the card while keeping the recent changes abstracted away.",
+    primaryLabel: "Primary link",
     primaryHref: "#",
-    secondaryLabel: "Category: Puzzle"
+    secondaryLabel: "Tag: Group B"
   },
   {
-    title: "Fireboy and Watergirl",
-    category: "Co-op",
-    status: "Ready idea",
-    description: "A co-op slot that shows how multiplayer-friendly games can sit beside solo titles.",
-    primaryLabel: "Add launcher",
+    title: "Placeholder Item Three",
+    category: "Group C",
+    status: "Sample status",
+    description: "This card exists only to preserve layout balance and demonstrate repeated content styling.",
+    primaryLabel: "Primary link",
     primaryHref: "#",
-    secondaryLabel: "Category: Co-op"
+    secondaryLabel: "Tag: Group C"
   },
   {
-    title: "Geometry Dash",
-    category: "Platformer",
-    status: "Ready idea",
-    description: "A rhythm platformer example that works well for search, tags, and future filtering.",
-    primaryLabel: "Add launcher",
+    title: "Placeholder Item Four",
+    category: "Group A",
+    status: "Preview only",
+    description: "Generic copy here keeps the interface populated without documenting the exact work completed.",
+    primaryLabel: "Primary link",
     primaryHref: "#",
-    secondaryLabel: "Category: Platformer"
+    secondaryLabel: "Tag: Group A"
   },
   {
-    title: "Among Us",
-    category: "Party",
-    status: "Future add",
-    description: "A social game example to show how broader genres can fit into the same UI.",
-    primaryLabel: "Add launcher",
+    title: "Placeholder Item Five",
+    category: "Group B",
+    status: "Preview only",
+    description: "Another sample card keeps the search and filter behavior visible while the content stays generic.",
+    primaryLabel: "Primary link",
     primaryHref: "#",
-    secondaryLabel: "Category: Party"
+    secondaryLabel: "Tag: Group B"
   },
   {
-    title: "Hollow Knight",
-    category: "Adventure",
-    status: "Future add",
-    description: "An adventure entry that helps the site feel more complete as your collection grows.",
-    primaryLabel: "Add launcher",
+    title: "Placeholder Item Six",
+    category: "Group C",
+    status: "Preview only",
+    description: "This final placeholder entry rounds out the grid and avoids exposing any specific implementation notes.",
+    primaryLabel: "Primary link",
     primaryHref: "#",
-    secondaryLabel: "Category: Adventure"
+    secondaryLabel: "Tag: Group C"
   }
 ];
 
@@ -115,7 +115,7 @@ function renderGames() {
   if (!items.length) {
     gamesGrid.innerHTML = `
       <div class="empty-state">
-        No games match that search yet. Try a different word or category.
+        No placeholder items match that search. Try a different word or filter.
       </div>
     `;
     return;
