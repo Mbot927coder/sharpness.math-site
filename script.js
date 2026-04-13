@@ -1,57 +1,66 @@
 const games = [
   {
-    title: "Placeholder Item One",
-    category: "Group A",
-    status: "Sample status",
-    description: "Example card copy used to preview the component without showing final content details.",
-    primaryLabel: "Primary link",
-    primaryHref: "#",
-    secondaryLabel: "Tag: Group A"
+    title: "Basket Random",
+    category: "Sports",
+    status: "Ready to play",
+    description: "Arcade basketball chaos with quick rounds and simple controls.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/Basket%20Random.html",
+    secondaryLabel: "File: Basket Random.html"
   },
   {
-    title: "Placeholder Item Two",
-    category: "Group B",
-    status: "Sample status",
-    description: "Neutral supporting text fills out the card while keeping the recent changes abstracted away.",
-    primaryLabel: "Primary link",
-    primaryHref: "#",
-    secondaryLabel: "Tag: Group B"
+    title: "Boxing Random",
+    category: "Sports",
+    status: "Ready to play",
+    description: "A goofy one-on-one boxing game built for short, fast matches.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/Boxing%20Random.html",
+    secondaryLabel: "File: Boxing Random.html"
   },
   {
-    title: "Placeholder Item Three",
-    category: "Group C",
-    status: "Sample status",
-    description: "This card exists only to preserve layout balance and demonstrate repeated content styling.",
-    primaryLabel: "Primary link",
-    primaryHref: "#",
-    secondaryLabel: "Tag: Group C"
+    title: "Brotato",
+    category: "Action",
+    status: "Ready to play",
+    description: "Arena survival action with swarms, upgrades, and constant movement.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/Brotato.html",
+    secondaryLabel: "File: Brotato.html"
   },
   {
-    title: "Placeholder Item Four",
-    category: "Group A",
-    status: "Preview only",
-    description: "Generic copy here keeps the interface populated without documenting the exact work completed.",
-    primaryLabel: "Primary link",
-    primaryHref: "#",
-    secondaryLabel: "Tag: Group A"
+    title: "Hollow Knight",
+    category: "Adventure",
+    status: "Ready to play",
+    description: "An exploration-heavy action adventure with platforming and combat.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/Hollow%20Knight.html",
+    secondaryLabel: "File: Hollow Knight.html"
   },
   {
-    title: "Placeholder Item Five",
-    category: "Group B",
-    status: "Preview only",
-    description: "Another sample card keeps the search and filter behavior visible while the content stays generic.",
-    primaryLabel: "Primary link",
-    primaryHref: "#",
-    secondaryLabel: "Tag: Group B"
+    title: "Soccer Random",
+    category: "Sports",
+    status: "Ready to play",
+    description: "Physics-heavy soccer matches with unpredictable bounces and fast pacing.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/Soccer%20Random.html",
+    secondaryLabel: "File: Soccer Random.html"
   },
   {
-    title: "Placeholder Item Six",
-    category: "Group C",
-    status: "Preview only",
-    description: "This final placeholder entry rounds out the grid and avoids exposing any specific implementation notes.",
-    primaryLabel: "Primary link",
-    primaryHref: "#",
-    secondaryLabel: "Tag: Group C"
+    title: "Volley Random",
+    category: "Sports",
+    status: "Ready to play",
+    description: "A volleyball spin on the random sports formula with quick back-and-forth rounds.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/Volley%20Random.html",
+    secondaryLabel: "File: Volley Random.html"
+  },
+  {
+    title: "10 Minutes Till Dawn",
+    category: "Action",
+    status: "Ready to play",
+    description: "A survival shooter focused on crowd control, dodging, and weapon upgrades.",
+    primaryLabel: "Play now",
+    primaryHref: "Video%20Games/cl10minutestildawn.html",
+    secondaryLabel: "File: cl10minutestildawn.html"
   }
 ];
 
@@ -115,7 +124,7 @@ function renderGames() {
   if (!items.length) {
     gamesGrid.innerHTML = `
       <div class="empty-state">
-        No placeholder items match that search. Try a different word or filter.
+        No games match that search. Try a different title or category.
       </div>
     `;
     return;
