@@ -50,24 +50,20 @@ const games = [
   }
 ];
 
-// ── DOM refs ────────────────────────────────────────────────
-const searchInput    = document.getElementById("searchInput");
-const categoryFilter = document.getElementById("categoryFilter");
-const gamesGrid      = document.getElementById("gamesGrid");
-const resultsCount   = document.getElementById("resultsCount");
-const gameView       = document.getElementById("gameView");
-const gameFrame      = document.getElementById("gameFrame");
-const gameTitle      = document.getElementById("gameTitle");
+// ── DOM refs ─────────────────────────────────────────────────
+const searchInput           = document.getElementById("searchInput");
+const categoryFilter        = document.getElementById("categoryFilter");
+const gamesGrid             = document.getElementById("gamesGrid");
+const resultsCount          = document.getElementById("resultsCount");
+const gameView              = document.getElementById("gameView");
+const gameFrame             = document.getElementById("gameFrame");
+const gameTitle             = document.getElementById("gameTitle");
 const enterFullscreenButton = document.getElementById("enterFullscreenButton");
 const exitFullscreenButton  = document.getElementById("exitFullscreenButton");
 
-// ── Populate category dropdown ───────────────────────────────
-function uniqueCategories() {
-  return [...new Set(games.map(g => g.category))].sort();
-}
-
+// ── Category dropdown ────────────────────────────────────────
 function fillCategoryOptions() {
-  uniqueCategories().forEach(cat => {
+  [...new Set(games.map(g => g.category))].sort().forEach(cat => {
     const opt = document.createElement("option");
     opt.value = cat;
     opt.textContent = cat;
@@ -105,7 +101,7 @@ function renderGames() {
       <p class="math-description">${g.description}</p>
       <div class="math-actions">
         <button class="card-button primary" onclick="launchGame('${g.href}','${g.title}')">Play now</button>
-        <span class="card-button">File: ${decodeURIComponent(g.href).replace('Maths stuff/','')}</span>
+        <span class="card-button">${decodeURIComponent(g.href).replace('Maths stuff/', '')}</span>
       </div>
     </article>
   `).join("");
@@ -113,8 +109,7 @@ function renderGames() {
 
 // ── Game launcher ────────────────────────────────────────────
 function launchGame(url, title) {
-  console.log("Launching game:", url, title);
-  gameFrame.src = url;
+  gameFrame.src         = url;
   gameTitle.textContent = title;
   gameView.style.display = "flex";
   syncFullscreenButtons();
@@ -131,84 +126,68 @@ function closeGame() {
 }
 
 function syncFullscreenButtons() {
-  const fullscreenSupported = Boolean(document.fullscreenEnabled && gameView.requestFullscreen);
+  const supported    = Boolean(document.fullscreenEnabled && gameView.requestFullscreen);
   const isFullscreen = document.fullscreenElement === gameView;
-  enterFullscreenButton.hidden = !fullscreenSupported || isFullscreen;
-  exitFullscreenButton.hidden = !fullscreenSupported || !isFullscreen;
+  enterFullscreenButton.hidden = !supported || isFullscreen;
+  exitFullscreenButton.hidden  = !supported || !isFullscreen;
 }
 
 async function enterFullscreen() {
-  if (!document.fullscreenEnabled || !gameView.requestFullscreen) return;
-  await gameView.requestFullscreen();
+  if (document.fullscreenEnabled && gameView.requestFullscreen) {
+    await gameView.requestFullscreen();
+  }
 }
 
 async function exitFullscreen() {
-  if (document.fullscreenElement !== gameView) return;
-  await document.exitFullscreen();
+  if (document.fullscreenElement === gameView) {
+    await document.exitFullscreen();
+  }
 }
 
-// ── Sidebar category link highlight ─────────────────────────
+// ── URL-based category filter ─────────────────────────────────
 function applyURLFilter() {
-  const params = new URLSearchParams(window.location.search);
-  const cat = params.get("category");
+  const cat = new URLSearchParams(window.location.search).get("category");
   if (cat) {
     categoryFilter.value = cat;
-    // Highlight matching sidebar link
     document.querySelectorAll(".sidebar-nav .nav-item[data-filter]").forEach(link => {
       link.classList.toggle("active", link.dataset.filter === cat);
     });
-    // Remove active from the "Games" top-level link so the category one wins
     document.querySelectorAll(".sidebar-nav .nav-item:not([data-filter])").forEach(link => {
       if (link.getAttribute("href") === "games.html") link.classList.remove("active");
     });
   } else {
-    // If no category, ensure "Browse Games" is active
     document.querySelectorAll(".sidebar-nav .nav-item").forEach(link => {
-      if (link.getAttribute("href") === "games.html" && !link.dataset.filter) {
-        link.classList.add("active");
-      } else if (link.dataset.filter) {
-        link.classList.remove("active");
-      }
+      link.classList.toggle("active", link.getAttribute("href") === "games.html" && !link.dataset.filter);
     });
   }
   renderGames();
 }
 
-// ── Sidebar category link click handler ─────────────────────
-function handleSidebarClick(e) {
-  const link = e.target.closest(".nav-item[data-filter]");
-  if (!link) return;
+// ── Sidebar category clicks ───────────────────────────────────
+document.querySelectorAll(".sidebar-nav").forEach(nav => {
+  nav.addEventListener("click", e => {
+    const link = e.target.closest(".nav-item[data-filter]");
+    if (!link) return;
+    e.preventDefault();
 
-  e.preventDefault();
-  const cat = link.dataset.filter;
-  
-  // Update URL without reload
-  const newUrl = new URL(window.location);
-  newUrl.searchParams.set("category", cat);
-  window.history.pushState({}, "", newUrl);
+    const newUrl = new URL(window.location);
+    newUrl.searchParams.set("category", link.dataset.filter);
+    window.history.pushState({}, "", newUrl);
 
-  // Update filter and UI
-  categoryFilter.value = cat;
-  applyURLFilter();
-  
-  // Close hub if active (mobile/hub mode)
-  if (window.toggleHub && document.querySelector('.sidebar').classList.contains('active')) {
-    window.toggleHub();
-  }
-}
+    categoryFilter.value = link.dataset.filter;
+    applyURLFilter();
+
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar && sidebar.classList.contains('active')) toggleHub();
+  });
+});
 
 // ── Init ─────────────────────────────────────────────────────
 fillCategoryOptions();
 applyURLFilter();
 
-document.querySelectorAll(".sidebar-nav").forEach(nav => {
-  nav.addEventListener("click", handleSidebarClick);
-});
-
-// Also handle popstate for browser back/forward buttons
-window.addEventListener("popstate", applyURLFilter);
-
 searchInput.addEventListener("input", renderGames);
 categoryFilter.addEventListener("change", renderGames);
+window.addEventListener("popstate", applyURLFilter);
 document.addEventListener("fullscreenchange", syncFullscreenButtons);
 syncFullscreenButtons();

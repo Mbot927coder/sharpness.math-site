@@ -74,8 +74,8 @@ function initParticles() {
 let particlesActive = localStorage.getItem('particlesEnabled') !== 'false';
 
 function animate() {
-    if (!particlesActive) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (!particlesActive || document.hidden) {
+        if (!particlesActive) ctx.clearRect(0, 0, canvas.width, canvas.height);
         requestAnimationFrame(animate);
         return;
     }
