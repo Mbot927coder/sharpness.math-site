@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,119 +10,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app-container">
-
-  <button class="hub-trigger" onclick="toggleHub()">S</button>
-
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <div class="logo-icon">S</div>
-      <span class="brand-text">Sharpness Math</span>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section-title">Navigation</div>
-      <a class="nav-item" href="index.html">
-        <span class="icon">🏠</span> Home
-      </a>
-      <a class="nav-item" href="games.html">
-        <span class="icon">🎮</span> Games
-      </a>
-      <a class="nav-item active" href="about.html">
-        <span class="icon">ℹ️</span> About
-      </a>
-      <a class="nav-item" href="settings.html">
-        <span class="icon">⚙️</span> Settings
-      </a>
-      <div class="nav-section-title">Categories</div>
-      <a class="nav-item" href="games.html?category=Action" data-filter="Action">
-        <span class="class-dot dot-action"></span> Action
-      </a>
-      <a class="nav-item" href="games.html?category=Adventure" data-filter="Adventure">
-        <span class="class-dot dot-adventure"></span> Adventure
-      </a>
-      <a class="nav-item" href="games.html?category=Puzzle" data-filter="Puzzle">
-        <span class="class-dot dot-puzzle"></span> Puzzle
-      </a>
-      <a class="nav-item" href="games.html?category=Racing" data-filter="Racing">
-        <span class="class-dot dot-racing"></span> Racing
-      </a>
-      <a class="nav-item" href="games.html?category=Sports" data-filter="Sports">
-        <span class="class-dot dot-sports"></span> Sports
-      </a>
-      <a class="nav-item" href="games.html?category=Shooter" data-filter="Shooter">
-        <span class="class-dot dot-shooter"></span> Shooter
-      </a>
-    </nav>
-    <div class="sidebar-footer">
-      <button class="btn-signout" onclick="alert('Nothing to sign out of 😄')">
-        <span>↩</span> Sign Out
-      </button>
-    </div>
-  </aside>
-
-  <div class="main-column">
-    <nav class="mobile-nav">
-      <a class="nav-item" href="index.html">🏠 Home</a>
-      <a class="nav-item" href="games.html">🎮 Games</a>
-      <a class="nav-item active" href="about.html">ℹ️ About</a>
-      <a class="nav-item" href="settings.html">⚙️ Settings</a>
-    </nav>
-
-    <div class="page-shell">
-      <section class="about">
-        <div>
-          <p class="section-label">About</p>
-          <h2>Static game hosting, kept simple</h2>
-          <p>
-            sharpness.math is a static launcher for verified local HTML game files. The site reads from
-            <code>games.js</code>, embeds games inside the Games page viewer, and stores favorites,
-            recents, theme, and particle settings in your browser.
-          </p>
-          <p>
-            The current library includes <span id="aboutGameCount">59</span> working games across
-            <span id="aboutCategorySummary">action, adventure, puzzle, racing, shooter, and sports</span>.
-            Broken entries have been removed so the catalog only points at files that actually exist in
-            <code>Maths stuff</code>.
-          </p>
-          <div class="hero-actions" style="margin-top:1.5rem;">
-            <a class="button button-primary" href="games.html">Browse Games</a>
-            <a class="button button-secondary" href="index.html">Back to Home</a>
-          </div>
-        </div>
-        <ul class="about-list">
-          <li>No backend or build step is required</li>
-          <li>Games launch from the local <code>Maths stuff</code> folder</li>
-          <li>Favorites and recently played history stay in localStorage</li>
-          <li>The Games page supports search, category filters, and fullscreen play</li>
-          <li>The layout is designed to work on desktop and mobile</li>
-        </ul>
-      </section>
-
-      <section class="about" style="margin-top: 1.5rem;">
-        <div>
-          <p class="section-label">Credits</p>
-          <h2>Sources and Notes</h2>
-          <p>
-            The site is intentionally lightweight and mostly relies on browser APIs plus a small amount
-            of custom HTML, CSS, and JavaScript.
-          </p>
-          <ul class="about-list">
-            <li><strong>Fonts:</strong> Space Grotesk, Orbitron, and Inter via Google Fonts</li>
-            <li><strong>Storage:</strong> localStorage for favorites, recents, theme, and particle settings</li>
-            <li><strong>UI:</strong> Custom client-side HTML, CSS, and JavaScript <b>(Note that the site was made by AI)</b></li>
-            <li><strong>Games:</strong> Games from <a href="https://gn-math.dev" target="_blank" rel="noopener noreferrer">gn-math </a> (probably blocked but I got it on a home computer) and <a href="https://docs.google.com/document/d/1BGDZ5sgwGTQIf8or47KonzbA6LwfiLvv3RkhElb0j3g/edit?tab=t.0" target="_blank" rel="noopener noreferrer">Unblocked Games Doc</a></li>
-          </ul>
-        </div>
-        <div class="empty-state">
-          Yo, AI for the win? 😂. Blud I did nothing except a few things like the slang stuff. Also see <a href="">Suggestions form</a> for da suggestions.
-        </div>
-      </section>
-    </div>
-  </div>
-
-</div>
-<script src="particles.js"></script>
-<script src="games.js"></script>
-<script src="app.js"></script>
+  <div id="app" v-cloak></div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="games.js"></script>
+  <script src="vue-app.js"></script>
 </body>
 </html>

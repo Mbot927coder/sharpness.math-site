@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Placeholder</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      color: #f0f0f5;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0,255,198,.14), transparent 28rem),
+        radial-gradient(circle at 80% 80%, rgba(255,0,110,.12), transparent 28rem),
+        #040208;
+      font-family: Inter, system-ui, sans-serif;
+    }
+    main {
+      width: min(38rem, 100%);
+      padding: clamp(2rem, 7vw, 4rem);
+      text-align: center;
+      border: 1px solid rgba(0,255,198,.3);
+      border-radius: 1.5rem;
+      background: rgba(12,6,24,.82);
+      box-shadow: 0 0 3rem rgba(0,255,198,.12);
+    }
+    p { color: #a0a0b8; line-height: 1.6; }
+    h1 { margin: .5rem 0 1rem; font-size: clamp(1.75rem, 6vw, 3rem); }
+    .eyebrow { color: #00ffc6; font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Coming Soon</p>
+    <h1 id="title">Game Placeholder</h1>
+    <p>This game slot is intentionally a placeholder. Check back later for a new addition.</p>
+  </main>
+  <script>
+    const title = new URLSearchParams(location.search).get('title');
+    if (title) {
+      document.title = title;
+      document.getElementById('title').textContent = title;
+    }
+  </script>
+</body>
+</html>
